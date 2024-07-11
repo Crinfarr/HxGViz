@@ -1,0 +1,13 @@
+{
+    "haxe.configurations": [
+        {
+            "args": [
+                "-D web",
+                "-js __.js"
+            ],
+            "files": [
+                "../gviz/extern/web/Viz.hx"
+            ]
+        }
+    ]
+}
