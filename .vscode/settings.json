@@ -6,8 +6,21 @@
                 "-js __.js"
             ],
             "files": [
-                "../gviz/extern/web/Viz.hx"
-            ]
+                "gviz/extern/web/*",
+                "gviz/extern/web/**/*"
+            ],
+            "label": "Webjs"
+        },
+        {
+            "args": [
+                "-D web",
+                "-cpp __"
+            ],
+            "files": [
+                "gviz/extern/cpp/*",
+                "gviz/extern/cpp/**/*"
+            ],
+            "label": "CPP"
         }
     ]
 }
