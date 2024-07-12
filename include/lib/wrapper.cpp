@@ -10,16 +10,6 @@ wrapper::~wrapper()
     gvFreeContext(this->context);
 }
 
-class gvchart
-{
-public:
-    gvchart(Agraph_t *wrap);
-    ~gvchart();
-
-private:
-    Agraph_t *internalgraph;
-};
-
 gvchart::gvchart(Agraph_t *wrap)
 {
     this->internalgraph = wrap;

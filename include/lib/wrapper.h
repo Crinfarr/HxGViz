@@ -9,3 +9,13 @@ public:
     void open();
     struct graph;
 };
+
+class gvchart
+{
+public:
+    gvchart(Agraph_t *wrap);
+    ~gvchart();
+
+private:
+    Agraph_t *internalgraph;
+};
