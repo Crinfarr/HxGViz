@@ -1,21 +1,20 @@
 #include <graphviz/gvc.h>
 class wrapper
 {
-private:
-    GVC_t* context;
 public:
+    static wrapper fromString(const char* graphstring);
+    static wrapper fromFile(const char* filepath);
+    static wrapper create(char* name, const char* type);
+
     wrapper();
     ~wrapper();
-    void open();
-    struct graph;
-};
 
-class gvchart
-{
-public:
-    gvchart(Agraph_t *wrap);
-    ~gvchart();
-
-private:
-    Agraph_t *internalgraph;
+    char* render(const char* layoutengine, const char* format);
+    char* render(const char* layoutengine);
+    char* render();
+    void free();
+private:    
+    GVC_t* context;
+    Agraph_t* graph;
+    char* rendered;
 };

@@ -1,35 +1,75 @@
-#include <include/lib/wrapper.h>
+#include <lib/wrapper.h>
+#include <iostream>
+using namespace std;
 
 wrapper::wrapper()
 {
     this->context = gvContext();
+    this->rendered = "";
 }
-
 wrapper::~wrapper()
 {
     gvFreeContext(this->context);
+    delete graph;
 }
-
-gvchart::gvchart(Agraph_t *wrap)
+wrapper wrapper::fromString(const char *graphstring)
 {
-    this->internalgraph = wrap;
+    wrapper inst = wrapper();
+    inst.graph = agmemread(graphstring);
+    return inst;
 }
-gvchart::~gvchart()
+wrapper wrapper::fromFile(const char *filepath)
 {
-    delete this->internalgraph;
+    FILE *file = fopen(filepath, "r");
+    wrapper inst = wrapper();
+    inst.graph = agread(file, 0);
+    fclose(file);
+    return inst;
 }
-
-struct wrapper::graph
+wrapper wrapper::create(char *name, const char *type)
 {
-    gvchart fromFile(char *filepath)
+    wrapper inst = wrapper();
+    if (type == "agundirected")
     {
-        FILE *fp = fopen(filepath, "rw");
-        return gvchart(agread(fp, 0));
-        fclose(fp);
-        delete fp;
+        inst.graph = agopen(name, Agundirected, 0);
     }
-    gvchart fromString(char *graphstr)
+    else if (type == "agstrictundirected")
     {
-        return gvchart(agmemread(graphstr));
+        inst.graph = agopen(name, Agstrictundirected, 0);
     }
-};
+    else if (type == "agdirected")
+    {
+        inst.graph = agopen(name, Agdirected, 0);
+    }
+    else if (type == "agstrictdirected")
+    {
+        inst.graph = agopen(name, Agstrictdirected, 0);
+    }
+    else
+    {
+        throw "Invalid graph type ";
+    }
+    return inst;
+}
+char* wrapper::render() {
+    cout << "Autofilling dot,svg";
+    return render("dot", "svg");
+}
+char* wrapper::render(const char* layoutengine) {
+    cout<<"Autofilling svg";
+    return render(layoutengine, "svg");
+}
+char* wrapper::render(const char* layoutengine, const char* format) {
+    gvLayout(context, graph, layoutengine);
+    unsigned int writlen;
+    gvRenderData(context, graph, format, &rendered, &writlen);
+    gvFreeLayout(context, graph);
+    return rendered;
+}
+void wrapper::free() {
+    gvFreeRenderData(rendered);
+}
+void test() {
+    wrapper n = wrapper::fromString("digraph {a -> b}");
+    n.render();
+}
