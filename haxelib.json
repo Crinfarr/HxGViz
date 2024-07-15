@@ -2,9 +2,9 @@
     "contributors": [
         "crinfarr"
     ],
-    "version":"0.0.0",
+    "version":"0.0.1",
     "dependencies": {},
     "name": "hxgviz",
     "license": "LGPL",
-    "releasenote": ""
+    "releasenote": "Kinda works"
 }
