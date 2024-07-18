@@ -1,5 +1,9 @@
 #include <lib/Wrappers.h>
 
+EdgeWrapper* NodeWrapper::connectNode(NodeWrapper& target, char* name) {
+    return new EdgeWrapper(*this, target, name);
+}
+
 NodeWrapper::NodeWrapper(SubgraphWrapper& parent, char* name) {
     this->node = agnode(parent.subg, name, 0);
     this->gwParent = &parent;

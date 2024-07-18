@@ -44,6 +44,9 @@ SubgraphWrapper* GraphWrapper::createSubgraph(char* name) {
 NodeWrapper* GraphWrapper::createNode(char* name) {
     return new NodeWrapper(*this, name);
 }
+EdgeWrapper* GraphWrapper::createEdge(NodeWrapper& nodeA, NodeWrapper& nodeB, char* name) {
+    
+}
 char* GraphWrapper::render(const char* layoutengine, const char* format) {
     gvLayout(context, graph, layoutengine);
     unsigned int writlen;

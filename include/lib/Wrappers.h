@@ -11,6 +11,7 @@ public:
 
     SubgraphWrapper* createSubgraph(char* name);
     NodeWrapper* createNode(char* name);
+    EdgeWrapper* createEdge(NodeWrapper& nodeA, NodeWrapper& nodeB, char* name);
 
     char* render(const char* layoutengine, const char* format);
     void free();
@@ -18,6 +19,7 @@ public:
 private:
     friend class SubgraphWrapper;
     friend class NodeWrapper;
+    friend class EdgeWrapper;
     GraphWrapper();
     ~GraphWrapper();
     GVC_t* context;
@@ -34,6 +36,7 @@ protected:
     // allow GraphWrapper to make subgraphs
     friend class GraphWrapper;
     friend class NodeWrapper;
+    friend class EdgeWrapper;
     SubgraphWrapper(GraphWrapper& parent, char* name);
     SubgraphWrapper(SubgraphWrapper& parent, char* name);
     ~SubgraphWrapper();
@@ -46,9 +49,11 @@ private:
 
 class NodeWrapper {
 public:
+    EdgeWrapper* connectNode(NodeWrapper& target, char* name);
 protected:
     friend class GraphWrapper;
     friend class SubgraphWrapper;
+    friend class EdgeWrapper;
 
     NodeWrapper(GraphWrapper& parent, char* name);
     NodeWrapper(SubgraphWrapper& parent, char* name);
@@ -58,4 +63,18 @@ private:
     GraphWrapper* rootParent;
     SubgraphWrapper* gwParent;
     Agnode_t* node;
+};
+
+class EdgeWrapper {
+public:
+protected:
+    friend class GraphWrapper;
+    friend class SubgraphWrapper;
+    friend class NodeWrapper;
+    EdgeWrapper(NodeWrapper& nodeA, NodeWrapper& nodeB, char* name);
+    ~EdgeWrapper();
+private:
+    NodeWrapper* startNode;
+    NodeWrapper* endNode;
+    Agedge_t* edge;
 };
