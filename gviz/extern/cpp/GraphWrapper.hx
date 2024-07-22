@@ -2,6 +2,8 @@ package gviz.extern.cpp;
 
 import cpp.Star;
 import gviz.extern.cpp.SubgraphWrapper;
+import gviz.extern.cpp.EdgeWrapper;
+import gviz.extern.cpp.NodeWrapper;
 
 #if (cpp||bin)
 @:buildXml('
@@ -27,6 +29,10 @@ extern class GraphWrapper {
     public static extern function create(name:String, type:String):Star<GraphWrapper>;
 	
     public extern function createSubgraph(name:String):Star<SubgraphWrapper>;
+    public extern function createNode(name:String):Star<NodeWrapper>;
+    public extern function createEdge(nodeA:NodeWrapper, nodeB:NodeWrapper, name:String):Star<EdgeWrapper>;
+
+    public extern function setAttribute(att:String, val:String):Void;
 
     public extern function render(layoutengine:String, format:String):String;
     public extern function free():Void;
