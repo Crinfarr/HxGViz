@@ -45,8 +45,14 @@ NodeWrapper* GraphWrapper::createNode(char* name) {
     return new NodeWrapper(*this, name);
 }
 EdgeWrapper* GraphWrapper::createEdge(NodeWrapper& nodeA, NodeWrapper& nodeB, char* name) {
-    
+    return new EdgeWrapper(nodeA, nodeB, name);
 }
+
+void GraphWrapper::setAttr(char* att, char* val) {
+    //HACK this might be broken? idk
+    agsafeset(this->graph, att, val, ""); 
+}
+
 char* GraphWrapper::render(const char* layoutengine, const char* format) {
     gvLayout(context, graph, layoutengine);
     unsigned int writlen;

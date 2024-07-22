@@ -20,3 +20,7 @@ SubgraphWrapper::~SubgraphWrapper() {
 SubgraphWrapper* SubgraphWrapper::createSubgraph(char* name) {
     return new SubgraphWrapper(*this, name);
 }
+void GraphWrapper::setAttr(char* att, char* val) {
+    //HACK this might be broken? idk
+    agsafeset(this->graph, att, val, ""); 
+}

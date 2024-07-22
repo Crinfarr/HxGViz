@@ -13,6 +13,8 @@ public:
     NodeWrapper* createNode(char* name);
     EdgeWrapper* createEdge(NodeWrapper& nodeA, NodeWrapper& nodeB, char* name);
 
+    void setAttr(char* att, char* val);
+
     char* render(const char* layoutengine, const char* format);
     void free();
 
@@ -32,6 +34,8 @@ class SubgraphWrapper {
 public:
     SubgraphWrapper* createSubgraph(char* name);
 
+    void setAttr(char* att, char* val);
+
 protected:
     // allow GraphWrapper to make subgraphs
     friend class GraphWrapper;
@@ -50,6 +54,8 @@ private:
 class NodeWrapper {
 public:
     EdgeWrapper* connectNode(NodeWrapper& target, char* name);
+    
+    void setAttr(char* att, char* val);
 protected:
     friend class GraphWrapper;
     friend class SubgraphWrapper;
@@ -67,6 +73,7 @@ private:
 
 class EdgeWrapper {
 public:
+    void setAttr(char* att, char* val);
 protected:
     friend class GraphWrapper;
     friend class SubgraphWrapper;
