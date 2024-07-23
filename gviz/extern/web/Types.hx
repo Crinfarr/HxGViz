@@ -1,5 +1,5 @@
 package gviz.extern.web;
-
+#if (js || web)
 import haxe.extern.EitherType;
 
 typedef RenderOptions = {
@@ -81,3 +81,4 @@ typedef ImageSize = {
 typedef HTMLString = {
     html:String
 }
+#end
