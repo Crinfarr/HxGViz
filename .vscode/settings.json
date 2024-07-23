@@ -21,6 +21,20 @@
                 "gviz/extern/cpp/**/*"
             ],
             "label": "CPP"
+        },
+        {
+            "args": [
+                "-D web",
+                "-js __.js"
+            ],
+            "label": "Global js"
+        },
+        {
+            "args": [
+                "-D bin",
+                "-cpp __"
+            ],
+            "label": "Global cpp"
         }
     ]
 }
