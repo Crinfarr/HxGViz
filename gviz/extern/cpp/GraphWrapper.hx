@@ -1,11 +1,11 @@
 package gviz.extern.cpp;
 
+#if (cpp || bin)
 import cpp.Star;
 import gviz.extern.cpp.SubgraphWrapper;
 import gviz.extern.cpp.EdgeWrapper;
 import gviz.extern.cpp.NodeWrapper;
 
-#if (cpp||bin)
 @:buildXml('
 <files id="haxe">
     <compilerflag value="-I${haxelib:hxgviz}/include"/>

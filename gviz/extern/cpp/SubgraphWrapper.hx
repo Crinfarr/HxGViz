@@ -1,5 +1,6 @@
 package gviz.extern.cpp;
 
+#if (cpp || bin)
 import cpp.Star;
 
 @:buildXml('
@@ -15,3 +16,4 @@ extern class SubgraphWrapper {
     public extern function createSubgraph(name:String):Star<SubgraphWrapper>;
     public extern function setAttr(att:String, val:String):Void;
 }
+#end

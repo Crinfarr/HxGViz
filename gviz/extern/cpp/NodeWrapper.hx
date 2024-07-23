@@ -1,5 +1,6 @@
 package gviz.extern.cpp;
 
+#if (cpp || bin)
 import cpp.Star;
 import gviz.extern.cpp.EdgeWrapper;
 
@@ -16,3 +17,4 @@ extern class NodeWrapper {
     public extern function connectNode(target:NodeWrapper, name:String):Star<EdgeWrapper>;
     public extern function setAttr(att:String, val:String):Void;
 }
+#end

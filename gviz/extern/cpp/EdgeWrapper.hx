@@ -1,5 +1,6 @@
 package gviz.extern.cpp;
 
+#if (cpp || bin)
 @:buildXml('
 <files id="haxe">
     <file name="${haxelib:hxgviz}/include/lib/EdgeWrapper.cpp">
@@ -12,3 +13,4 @@ package gviz.extern.cpp;
 extern class EdgeWrapper {
     public extern function setAttr(att:String, val:String):Void;
 }
+#end
