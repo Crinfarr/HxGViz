@@ -8,7 +8,7 @@ import gviz.internal.Enums.GraphType;
 import gviz.internal.Enums.GraphAttribute;
 import gviz.extern.web.GraphLayer;
 
-using haxe.EnumTools;
+using haxe.EnumTools.EnumValueTools;
 
 class Graph {
     #if cpp
@@ -26,16 +26,22 @@ class Graph {
 	public function new(graphname:String = "", graphType:GraphType) {
 		intGraph = GraphWrapper.create(graphname, parseGtype(graphType));
     }
-    public function createNode(nodename:String="") {
+    public function createNode(nodename:String=""):Node {
         final wrapper:NodeWrapper = intGraph.createNode(nodename);
-        //TODO wrapper interface Node class
+        final node = new Node(wrapper);
+        return node;
     }
     public function createEdge(edgename:String="", nodeA:NodeWrapper, nodeB:NodeWrapper) {
         final edge:EdgeWrapper = intGraph.createEdge(nodeA, nodeB, edgename);
         //TODO edge interface Edge class
     }
     public function setAttribute(attribute:GraphAttribute) {
-
+        switch (attribute) {
+            case ClusterRank(enumval):
+                this.intGraph.setAttribute(attribute.getName(), '${enumval.getName()}');
+            case _:
+                this.intGraph.setAttribute(attribute.getName(), '${attribute.getParameters()[0]}');
+        }
     }
 
     #elseif js
