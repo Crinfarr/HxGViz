@@ -787,61 +787,105 @@ private enum X11Color {
 }
 
 private enum GVOverlayRange {
-	// Applies to all elements in the graph
+	/**
+	 * Applies to all elements in the graph
+	 */
 	All;
-	// Applies to a specific element identified by its ID
+
+	/**
+	 * Applies to a specific element identified by its ID
+	 */
 	ByID(id:String);
-	// Applies to a range of elements between two specified IDs
+
+	/**
+	 * Applies to a range of elements between two specified IDs
+	 */
 	IDRange(startID:String, endID:String);
 }
+
 @:allow(gviz.internal.Node)
 private enum GVStyleOptionsType {
-	// Renders the element with a dashed line style
+	/**
+	 * Renders the element with a dashed line style
+	 */
 	Dashed;
-	// Renders the element with a dotted line style
+
+	/**
+	 * Renders the element with a dotted line style
+	 */
 	Dotted;
-	// Renders the element with a solid line style
+
+	/**
+	 * Renders the element with a solid line style
+	 */
 	Solid;
-	// Makes the element invisible
+
+	/**
+	 * Makes the element invisible
+	 */
 	Invis;
-	// Renders the element with a bold line style
+
+	/**
+	 * Renders the element with a bold line style
+	 */
 	Bold;
-	// Edges only: Renders the edge with a tapered style
+
+	/**
+	 * Edges only: Renders the edge with a tapered style
+	 */
 	Tapered;
-	// Nodes only: Adds diagonal lines to the node shape
+
+	/**
+	 * Nodes only: Adds diagonal lines to the node shape
+	 */
 	Diagonals;
-	// Clusters and Nodes: Applies rounded corners to the shape
+
+	/**
+	 * Clusters and Nodes: Applies rounded corners to the shape
+	 */
 	Rounded;
-	// Fills the shape with the specified fill color
+
+	/**
+	 * Fills the shape with the specified fill color
+	 */
 	Filled;
-	// Nodes, Clusters, and Graphs: Applies a radial gradient fill
+
+	/**
+	 * Nodes, Clusters, and Graphs: Applies a radial gradient fill
+	 */
 	Radial;
-	// Clusters/Rectangles only: Applies a striped fill pattern
+
+	/**
+	 * Clusters/Rectangles only: Applies a striped fill pattern
+	 */
 	Striped;
-	// Elliptical nodes only: Divides the node into wedge-shaped sections
+
+	/**
+	 * Elliptical nodes only: Divides the node into wedge-shaped sections
+	 */
 	Wedged;
 }
 
 private enum EdgeArrowType {
 	Normal;
 	Inv;
-    Dot;
-    InvDot;
-    ODot;
-    InvODot;
-    None;
-    Tee;
-    Empty;
-    InvEmpty;
-    Diamond;
-    ODiamond;
-    EDiamond;
-    Crow;
-    Box;
-    OBox;
-    Open;
-    HalfOpen;
-    Vee;
+	Dot;
+	InvDot;
+	ODot;
+	InvODot;
+	None;
+	Tee;
+	Empty;
+	InvEmpty;
+	Diamond;
+	ODiamond;
+	EDiamond;
+	Crow;
+	Box;
+	OBox;
+	Open;
+	HalfOpen;
+	Vee;
 }
 
 private enum EdgeDirectionType {
@@ -853,8 +897,8 @@ private enum EdgeDirectionType {
 
 private enum GVCharsetType {
 	Utf8;
-    Latin1;
-    Big5;
+	Latin1;
+	Big5;
 }
 
 private enum GVAlignmentType {
@@ -870,265 +914,611 @@ private enum GraphLabelLocation {
 
 private enum GraphOutputOrderType {
 	BreadthFirst;
-    NodesFirst;
-    EdgesFirst;
+	NodesFirst;
+	EdgesFirst;
 }
 
 private enum GraphPageDirectionType {
 	Bl;
-    Br;
-    Tl;
-    Tr;
-    Rb;
-    Rt;
-    Lb;
-    Lt;
+	Br;
+	Tl;
+	Tr;
+	Rb;
+	Rt;
+	Lb;
+	Lt;
 }
 
-/**
- * On page 16 of https://www.graphviz.org/pdf/libguide.pdf
- */
 enum GraphAttribute {
-	// Geometric options
-	// Centers the drawing on the page
+	/**
+	 * Geometric options
+	 */
+	/**
+	 * Centers the drawing on the page
+	 */
 	Center(on:Bool);
-	// Specifies how to rank nodes in the same cluster
+
+	/**
+	 * Specifies how to rank nodes in the same cluster
+	 */
 	ClusterRank(rank:ClusterRank);
-	// Allows edges between clusters
+
+	/**
+	 * Allows edges between clusters
+	 */
 	Compound(on:Bool);
-	// Enables edge concentrators for reducing clutter
+
+	/**
+	 * Enables edge concentrators for reducing clutter
+	 */
 	Concentrate(on:Bool);
-	// Sets the default separation between nodes
+
+	/**
+	 * Sets the default separation between nodes
+	 */
 	DefaultDist(amt:Float);
-	// Sets the number of dimensions for the layout
+
+	/**
+	 * Sets the number of dimensions for the layout
+	 */
 	Dim(val:Int);
-	// Sets the resolution of the output in dots per inch
+
+	/**
+	 * Sets the resolution of the output in dots per inch
+	 */
 	Dpi(val:String);
-	// Sets the error tolerance for the layout algorithm
+
+	/**
+	 * Sets the error tolerance for the layout algorithm
+	 */
 	Epsilon(val:Float);
-	// Sets the default font name for the graph
+
+	/**
+	 * Sets the default font name for the graph
+	 */
 	Fontname(name:String);
-	// Specifies the directory to search for fonts
+
+	/**
+	 * Specifies the directory to search for fonts
+	 */
 	Fontpath(path:String);
-	// Sets the default font size for the graph
+
+	/**
+	 * Sets the default font size for the graph
+	 */
 	Fontsize(pts:Int);
-	// Sets the label for the entire graph
+
+	/**
+	 * Sets the label for the entire graph
+	 */
 	Label(text:String);
-	// Sets the page margin (in points)
+
+	/**
+	 * Sets the page margin (in points)
+	 */
 	Margin(val:Int);
-	// Sets the maximum number of iterations in the layout algorithm
+
+	/**
+	 * Sets the maximum number of iterations in the layout algorithm
+	 */
 	MaxIter(num:Float);
-	// Sets the maximum cycle count for the mincross algorithm
+
+	/**
+	 * Sets the maximum cycle count for the mincross algorithm
+	 */
 	MCLimit(num:Float);
-	// Sets the minimum separation between all nodes
+
+	/**
+	 * Sets the minimum separation between all nodes
+	 */
 	MinDist(distance:Float);
-	// Sets the graph layout mode
+
+	/**
+	 * Sets the graph layout mode
+	 */
 	Mode(modename:String);
-	// Sets the graph layout model
+
+	/**
+	 * Sets the graph layout model
+	 */
 	Model(modelname:String);
-	// Sets the minimum space between two adjacent nodes in the same rank
+
+	/**
+	 * Sets the minimum space between two adjacent nodes in the same rank
+	 */
 	NodeSep(amount:Float);
-	// Deprecated attribute, do not use
+
+	/**
+	 * Deprecated attribute, do not use
+	 */
 	@:deprecated NSLimit;
-	// Sets the order in which edges are arranged
+
+	/**
+	 * Sets the order in which edges are arranged
+	 */
 	Ordering(type:EdgeOrderingType);
-	// Sets the graph orientation
+
+	/**
+	 * Sets the graph orientation
+	 */
 	Orientation(type:OrientationType);
-	// Controls node overlap removal
+
+	/**
+	 * Controls node overlap removal
+	 */
 	Overlap(on:Bool);
-	// Deprecated attribute, do not use
+
+	/**
+	 * Deprecated attribute, do not use
+	 */
 	@:deprecated Pack;
-	// Deprecated attribute, do not use
+
+	/**
+	 * Deprecated attribute, do not use
+	 */
 	@:deprecated PackMode;
-	// Sets the number of pages to spread the graph over
+
+	/**
+	 * Sets the number of pages to spread the graph over
+	 */
 	Pagination(xsize:Float, ysize:Float);
-	// Sets the node label resolution
+
+	/**
+	 * Sets the node label resolution
+	 */
 	Quantum(multiplier:Float);
-	// Sets the type of rank assignment
+
+	/**
+	 * Sets the type of rank assignment
+	 */
 	Rank(type:RankType);
-	// Sets the direction of rank assignment in the graph
+
+	/**
+	 * Sets the direction of rank assignment in the graph
+	 */
 	RankDir(dir:RankDirType);
-	// Sets the minimum vertical space between ranks
+
+	/**
+	 * Sets the minimum vertical space between ranks
+	 */
 	RankSep(inches:Float);
-	// Sets the aspect ratio for the drawing
+
+	/**
+	 * Sets the aspect ratio for the drawing
+	 */
 	Ratio(type:AspectRatioType);
-	// Removes edge crossings
+
+	/**
+	 * Removes edge crossings
+	 */
 	RemInCross(on:Bool);
-	// Sets the resolution of the layout
+
+	/**
+	 * Sets the resolution of the layout
+	 */
 	Resolution(val:String);
-	// Sets the root node of the graph (platform-specific)
+
+	/**
+	 * Sets the root node of the graph (platform-specific)
+	 */
 	#if (cpp || bin)
 	Root(rootnode:NodeWrapper);
 	#elseif (js || web)
 	Root(rootnode:Node);
 	#end
-	// Sets the rotation angle of the final layout
+
+	/**
+	 * Sets the rotation angle of the final layout
+	 */
 	Rotate(degrees:Float);
-	// Sets the maximum number of nodes to look at during crossing minimization
+
+	/**
+	 * Sets the maximum number of nodes to look at during crossing minimization
+	 */
 	SearchSize(size:Float);
-	// Sets the margin to use when packing graphs
+
+	/**
+	 * Sets the margin to use when packing graphs
+	 */
 	Sep(factor:Float);
-	// Sets the maximum size of the drawing
+
+	/**
+	 * Sets the maximum size of the drawing
+	 */
 	Size(max:Float);
-	// Deprecated attribute, do not use
+
+	/**
+	 * Deprecated attribute, do not use
+	 */
 	@:deprecated Splines(on:Bool);
-	// Deprecated attribute, do not use
+
+	/**
+	 * Deprecated attribute, do not use
+	 */
 	@:deprecated Start;
-	// Sets the Voronoi diagram margin factor
+
+	/**
+	 * Sets the Voronoi diagram margin factor
+	 */
 	VoroMargin(factor:Float);
-	// Sets the clipping window for the graph
+
+	/**
+	 * Sets the clipping window for the graph
+	 */
 	Viewport(windowXS:Float, windowXE:Float, windowYS:Float, windowYE:Float);
-	// Decorative options
-	// Sets the background color of the graph
+
+	/**
+	 * Decorative options
+	 */
+	/**
+	 * Sets the background color of the graph
+	 */
 	Bgcolor(color:GVColorType);
-	// Sets the character encoding used for text
+
+	/**
+	 * Sets the character encoding used for text
+	 */
 	Charset(set:GVCharsetType);
-	// Sets the font color for html-like labels
+
+	/**
+	 * Sets the font color for html-like labels
+	 */
 	Ffontcolor(color:GVColorType);
-	// Sets the justification for graph labels
+
+	/**
+	 * Sets the justification for graph labels
+	 */
 	Labeljust(align:GVAlignmentType);
-	// Sets the vertical placement of graph labels
+
+	/**
+	 * Sets the vertical placement of graph labels
+	 */
 	Labelloc(align:GraphLabelLocation);
-	// Specifies a list of layer names for the graph
+
+	/**
+	 * Specifies a list of layer names for the graph
+	 */
 	Layers(names:Array<String>);
-	// Deprecated attribute, internally used
+
+	/**
+	 * Deprecated attribute, internally used
+	 */
 	@:deprecated Layersep(separator:String);
-	// Controls whether labels should be justified
+
+	/**
+	 * Controls whether labels should be justified
+	 */
 	Nojustify(enable:Bool);
-	// Sets the order in which the graph is drawn
+
+	/**
+	 * Sets the order in which the graph is drawn
+	 */
 	Outputorder(order:GraphOutputOrderType);
-	// Sets the traversal order of pages
+
+	/**
+	 * Sets the traversal order of pages
+	 */
 	Pagedir(order:GraphPageDirectionType);
-	// Sets the number of points used to represent circles and ellipses
+
+	/**
+	 * Sets the number of points used to represent circles and ellipses
+	 */
 	Samplepoints(amt:Int);
-	// Specifies a stylesheet for the graph (advanced topic)
+
+	/**
+	 * Specifies a stylesheet for the graph (advanced topic)
+	 */
 	Stylesheet(xml:String);
-	// Sets the color model (usage unclear)
+
+	/**
+	 * Sets the color model (usage unclear)
+	 */
 	Truecolor(model:String);
 }
 
 enum NodeAttribute {
-	// Geometric options
-	// Sets the amount of distortion for the node shape
+	/**
+	 * Geometric options
+	 */
+	/**
+	 * Sets the amount of distortion for the node shape
+	 */
 	Distortion(amt:Float);
-	// Determines if the node size is fixed or can be adjusted
+
+	/**
+	 * Determines if the node size is fixed or can be adjusted
+	 */
 	FixedSize(on:Bool);
-	// Sets the font name for the node label
+
+	/**
+	 * Sets the font name for the node label
+	 */
 	Fontname(name:String);
-	// Sets the font size for the node label
+
+	/**
+	 * Sets the font size for the node label
+	 */
 	Fontsize(size:Int);
-	// Assigns the node to a named group for layout purposes
+
+	/**
+	 * Assigns the node to a named group for layout purposes
+	 */
 	Group(name:String);
-	// Sets the height of the node
+
+	/**
+	 * Sets the height of the node
+	 */
 	Height(amt:Float);
-	// Sets the text label for the node
+
+	/**
+	 * Sets the text label for the node
+	 */
 	Label(text:String);
-	// Sets the margin space around the node's label
+
+	/**
+	 * Sets the margin space around the node's label
+	 */
 	Margin(xamt:Float, yamt:Float);
-	// Sets the rotation angle of the node
+
+	/**
+	 * Sets the rotation angle of the node
+	 */
 	Orientation(angle:Float);
-	// Sets the number of node outlines (deprecated)
-	@:deprecated Peripheries(num:Int); // not sure how this works
-	// Fixes the node's position during layout
+
+	/**
+	 * Sets the number of node outlines (deprecated)
+	 */
+	/**
+	 * eprecated Peripheries(num:Int); // not sure how this works
+	 */
+	/**
+	 * Fixes the node's position during layout
+	 */
 	Pin(on:Bool);
-	// Makes polygonal nodes appear more regular/symmetric
+
+	/**
+	 * Makes polygonal nodes appear more regular/symmetric
+	 */
 	Regular(state:Bool);
-	// Specifies if the node should be treated as a root in directed graphs
+
+	/**
+	 * Specifies if the node should be treated as a root in directed graphs
+	 */
 	Root(on:Bool);
-	// Sets the shape of the node
+
+	/**
+	 * Sets the shape of the node
+	 */
 	Shape(shape:NodeShape);
-	// Specifies a custom shape file for the node
+
+	/**
+	 * Specifies a custom shape file for the node
+	 */
 	Shapefile(path:String);
-	// Sets the number of sides for polygonal shapes (Use Shape(Polygon(sides)) instead)
+
+	/**
+	 * Sets the number of sides for polygonal shapes (Use Shape(Polygon(sides)) instead)
+	 */
 	Sides(polysides:Int);
-	// Sets the skew amount for the node shape
+
+	/**
+	 * Sets the skew amount for the node shape
+	 */
 	Skew(amt:Float);
-	// Sets the width of the node
+
+	/**
+	 * Sets the width of the node
+	 */
 	Width(inches:Float);
-	// Sets the z-coordinate for 3D layouts
+
+	/**
+	 * Sets the z-coordinate for 3D layouts
+	 */
 	Z(zcoordinate:Float);
-	// Decorative options
-	// Sets the color of the node's outline
+
+	/**
+	 * Decorative options
+	 */
+	/**
+	 * Sets the color of the node's outline
+	 */
 	Color(color:GVColorType);
-	// Sets the fill color of the node
+
+	/**
+	 * Sets the fill color of the node
+	 */
 	FillColor(color:GVColorType);
-	// Sets the font color for the node label
+
+	/**
+	 * Sets the font color for the node label
+	 */
 	FontColor(color:GVColorType);
-	// Specifies the overlay layer for the node
+
+	/**
+	 * Specifies the overlay layer for the node
+	 */
 	Layer(overlaytype:GVOverlayRange);
-	// Controls whether node labels should be justified
+
+	/**
+	 * Controls whether node labels should be justified
+	 */
 	Nojustify(enable:Bool);
-	// Sets the style options for the node
+
+	/**
+	 * Sets the style options for the node
+	 */
 	Style(type:Array<GVStyleOptionsType>);
 }
 
 enum EdgeAttribute {
-	// Geometric options
-	// Determines if the edge should be used for layout constraints
+	/**
+	 * Geometric options
+	 */
+	/**
+	 * Determines if the edge should be used for layout constraints
+	 */
 	Constraint(enable:Bool);
-	// Sets the font name for edge labels
+
+	/**
+	 * Sets the font name for edge labels
+	 */
 	Fontname(name:String);
-	// Sets the font size for edge labels
+
+	/**
+	 * Sets the font size for edge labels
+	 */
 	Fontsize(size:Int);
-	// Controls whether the head of the edge connects to the node boundary
+
+	/**
+	 * Controls whether the head of the edge connects to the node boundary
+	 */
 	Headclip(enable:Bool);
-	// Specifies where on the head node to connect the edge
+
+	/**
+	 * Specifies where on the head node to connect the edge
+	 */
 	Headport(type:EdgePortPosition);
-	// Sets the text label for the edge
+
+	/**
+	 * Sets the text label for the edge
+	 */
 	Label(text:String);
-	// Specifies an ideal length for the edge
+
+	/**
+	 * Specifies an ideal length for the edge
+	 */
 	Len(x:Float, y:Float);
-	// Sets the head of the edge to a cluster
+
+	/**
+	 * Sets the head of the edge to a cluster
+	 */
 	Lhead(cluster:String);
-	// Sets the tail of the edge to a cluster
+
+	/**
+	 * Sets the tail of the edge to a cluster
+	 */
 	Ltail(cluster:String);
-	// Sets the minimum rank difference between head and tail nodes
+
+	/**
+	 * Sets the minimum rank difference between head and tail nodes
+	 */
 	Minlen(length:Int);
-	// Groups edges with the same head and tag
+
+	/**
+	 * Groups edges with the same head and tag
+	 */
 	Samehead(tag:String);
-	// Groups edges with the same tail and tag
+
+	/**
+	 * Groups edges with the same tail and tag
+	 */
 	Sametail(tag:String);
-	// Controls whether the tail of the edge connects to the node boundary
+
+	/**
+	 * Controls whether the tail of the edge connects to the node boundary
+	 */
 	Tailclip(enable:Bool);
-	// Specifies where on the tail node to connect the edge
+
+	/**
+	 * Specifies where on the tail node to connect the edge
+	 */
 	Tailport(type:EdgePortPosition);
-	// Sets the weight (importance) of the edge for ranking
+
+	/**
+	 * Sets the weight (importance) of the edge for ranking
+	 */
 	Weight(importance:Int);
-	// Decorative options
-	// Specifies the style of arrowhead at the head of the edge
+
+	/**
+	 * Decorative options
+	 */
+	/**
+	 * Specifies the style of arrowhead at the head of the edge
+	 */
 	Arrowhead(type:EdgeArrowType);
-	// Sets the scaling factor for arrow sizes
+
+	/**
+	 * Sets the scaling factor for arrow sizes
+	 */
 	Arrowsize(scale:Float);
-	// Specifies the style of arrowhead at the tail of the edge
+
+	/**
+	 * Specifies the style of arrowhead at the tail of the edge
+	 */
 	Arrowtail(type:EdgeArrowType);
-	// Sets the color of the edge
+
+	/**
+	 * Sets the color of the edge
+	 */
 	Color(color:GVColorType);
-	// Indicates if the edge should be drawn with decorations
+
+	/**
+	 * Indicates if the edge should be drawn with decorations
+	 */
 	Decorate(enable:Bool);
-	// Specifies the direction of the edge
+
+	/**
+	 * Specifies the direction of the edge
+	 */
 	Dir(direction:EdgeDirectionType);
-	// Sets the font color for the edge label
+
+	/**
+	 * Sets the font color for the edge label
+	 */
 	Fontcolor(color:GVColorType);
-	// Sets a label near the head of the edge
+
+	/**
+	 * Sets a label near the head of the edge
+	 */
 	Headlabel(text:String);
-	// Specifies the angle for edge labels
+
+	/**
+	 * Specifies the angle for edge labels
+	 */
 	Labelangle(degrees:Float);
-	// Sets the scaling factor for the distance of edge labels from the edge
+
+	/**
+	 * Sets the scaling factor for the distance of edge labels from the edge
+	 */
 	Labeldistance(scale:Float);
-	// Allows edge labels to be placed on their natural side of the edge
+
+	/**
+	 * Allows edge labels to be placed on their natural side of the edge
+	 */
 	Labelfloat(enable:Bool);
-	// Sets the font color for head and tail labels
+
+	/**
+	 * Sets the font color for head and tail labels
+	 */
 	Labelfontcolor(color:GVColorType);
-	// Sets the font name for head and tail labels
+
+	/**
+	 * Sets the font name for head and tail labels
+	 */
 	Labelfontname(name:String);
-	// Sets the font size for head and tail labels
+
+	/**
+	 * Sets the font size for head and tail labels
+	 */
 	Labelfontsize(pts:Int);
-	// Specifies the overlay layer for the edge
+
+	/**
+	 * Specifies the overlay layer for the edge
+	 */
 	Layer(overlay:GVOverlayRange);
-	// Controls whether edge labels should be justified
+
+	/**
+	 * Controls whether edge labels should be justified
+	 */
 	Nojustify(enable:Bool);
-	// Sets the style options for the edge
+
+	/**
+	 * Sets the style options for the edge
+	 */
 	Style(type:Array<GVStyleOptionsType>);
-	// Sets a label near the tail of the edge
+
+	/**
+	 * Sets a label near the tail of the edge
+	 */
 	Taillabel(text:String);
 }
