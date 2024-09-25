@@ -1,30 +1,43 @@
 package gviz.internal;
 
+#if cpp
 import haxe.ValueException;
 import haxe.exceptions.ArgumentException;
 import gviz.internal.Enums.NodeAttribute;
 import gviz.extern.cpp.NodeWrapper;
+#if use_uuids
+import gviz.helpers.UUID;
+#end
 
 using haxe.EnumTools.EnumValueTools;
 using StringTools;
+#end
 
-@:haxe.warning('-Wdeprecated')
 class Node {
 	#if cpp
 	private final parent:Graph;
-    @:allow(gviz.internal.Edge)
+	@:allow(gviz.internal.Edge)
 	private final node:NodeWrapper;
 
 	private final style:Array<String> = [];
 
-    @:allow(gviz.internal.Graph)
-	private function new(name:String, parent:Graph) {
-        this.parent = parent;
-        this.node = parent.intGraph.createNode(name);
+	#if use_uuids
+	public final uuid:String;
+	#end
+
+	@:allow(gviz.internal.Graph)
+	private function new(parent:Graph, #if !use_uuids name:String #end) {
+		#if use_uuids
+		final name = uuid.v4;
+		this.uuid = name;
+		#end
+		this.parent = parent;
+		this.node = parent.intGraph.createNode(name);
 	}
-    public function connect(node:Node, edgeName:String) {
-        return parent.connect(this, node, edgeName);
-    }
+
+	public function connect(node:Node, #if !use_uuids edgeName:String #end) {
+		return parent.connect(this, node, #if !use_uuids edgeName #end);
+	}
 
 	public function setAttr(att:NodeAttribute) {
 		switch (att) {
